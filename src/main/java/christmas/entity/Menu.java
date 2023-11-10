@@ -1,4 +1,6 @@
-package christmas;
+package christmas.entity;
+
+import java.util.ArrayList;
 
 public enum Menu {
     MUSHROOM_CREAM_SOUP("애피타이저","양송이스프",  6000),
@@ -22,6 +24,21 @@ public enum Menu {
         this.type = type;
         this.name = name;
         this.price = price;
+    }
+
+    public static ArrayList<String> names() {
+        Menu[] menus = values();
+        ArrayList<String> names = new ArrayList<>();
+
+        for (Menu menu : menus) {
+            names.add(menu.getName());
+        }
+
+        return names;
+    }
+
+    public static boolean has(String name) {
+        return names().contains(name);
     }
 
     public String getType() {
