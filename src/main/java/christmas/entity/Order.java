@@ -15,17 +15,16 @@ public class Order {
     private void validate(String[] menuAndQuantityPairs) {
         isProperFormat(menuAndQuantityPairs);
 
-        ArrayList<String> menus = new ArrayList<String>();
+        ArrayList<Menu> menus = new ArrayList<Menu>();
         ArrayList<Integer> quantities = new ArrayList<Integer>();
 
         for (String menuAndQuantityPair : menuAndQuantityPairs) {
             String[] menuAndQuantity = menuAndQuantityPair.split("-");
-            menus.add((menuAndQuantity[0]));
+            menus.add(Enum.valueOf(Menu.class, menuAndQuantity[0]));
             quantities.add(Integer.parseInt(menuAndQuantity[1]));
         }
 
-        containsNonExistingMenu(menus);
-//        containsOnlyDrinks(menus);
+        Menu.containsOnlyDrinks(menus);
     }
 
     private void isProperFormat(String[] menuAndOrderQuantityPairs) {
@@ -35,14 +34,6 @@ public class Order {
             Matcher menuAndOrderQuantityMatcher = menuAndOrderQuantityPattern.matcher(menuAndOrderQuantityPair);
 
             if (!(menuAndOrderQuantityMatcher.matches())) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-            }
-        }
-    }
-
-    private void containsNonExistingMenu(ArrayList<String> menus) {
-        for (String menu: menus) {
-            if (!Menu.has(menu)) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }

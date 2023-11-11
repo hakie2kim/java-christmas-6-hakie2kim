@@ -1,6 +1,7 @@
 package christmas.entity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public enum Menu {
 //    MUSHROOM_CREAM_SOUP("애피타이저","양송이스프",  6000),
@@ -37,16 +38,16 @@ public enum Menu {
         this.price = price;
     }
 
-//    public static ArrayList<String> names() {
-//        Menu[] menus = values();
-//        ArrayList<String> names = new ArrayList<>();
-//
-//        for (Menu menu : menus) {
-//            names.add(menu.getName());
-//        }
-//
-//        return names;
-//    }
+    public static ArrayList<String> names() {
+        Menu[] menus = values();
+        ArrayList<String> names = new ArrayList<>();
+
+        for (Menu menu : menus) {
+            names.add(menu.name());
+        }
+
+        return names;
+    }
 
 //    public static ArrayList<Menu> drinks() {
 //        Menu[] menus = values();
@@ -61,25 +62,21 @@ public enum Menu {
 //        return drinks;
 //    }
 
-    public static boolean has(String name) {
-        for (Menu menu : values()) {
-            if (menu.name().equals(name)) {
-                return true;
+    public static void has(String name) {
+        if (!(names().contains(name))) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    public static void containsOnlyDrinks(List<Menu> menus) {
+        for (Menu menu : menus) {
+            if ((menu.getType().equals("애피타이저") || menu.getType().equals("메인") || menu.getType().equals("디저트"))) {
+                return;
             }
         }
 
-        return false;
+        throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
-
-//    public static boolean containsOnlyDrinks(ArrayList<Menu> menus) {
-//        for (Menu menu : menus) {
-//            if (menu.getType().equals("애피타이저") || menu.getType().equals("메인") || menu.getType().equals("디저트")) {
-//                return false;
-//            }
-//        }
-//
-//        return false;
-//    }
 
     public String getType() {
         return type;
