@@ -20,11 +20,10 @@ class OrderTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("잘못된 형식으로 주문하기")
+    @DisplayName("메뉴를 한번에 20개 넘게 주문하기")
     @Test
-    void createOrderByWrongMenu() {
-        new Order(new String[]{"아이스크림-2", "떡볶이-4"});
-//        assertThatThrownBy(() -> new Order(new String[]{"아이스크림-2", "떡볶이-4"}))
-//                .isInstanceOf(IllegalArgumentException.class);
+    void createOrderByExceedingQuantityLimit() {
+        assertThatThrownBy(() -> new Order(new String[]{"아이스크림-9", "시저샐러드-9", "해산물파스타-2"}))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

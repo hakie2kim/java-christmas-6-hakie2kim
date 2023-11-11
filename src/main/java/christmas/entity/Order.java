@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 public class Order {
     private HashMap<Menu, Integer> order;
+    final static int totalLimitQuantities = 20;
 
     public Order(String[] menuAndQuantityPairs) {
         validate(menuAndQuantityPairs);
@@ -24,6 +25,8 @@ public class Order {
             quantities.add(Integer.parseInt(menuAndQuantity[1]));
         }
 
+        isOverTotalLimitQuantities(quantities);
+
         Menu.containsOnlyDrinks(menus);
     }
 
@@ -36,6 +39,18 @@ public class Order {
             if (!(menuAndOrderQuantityMatcher.matches())) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
+        }
+    }
+
+    private void isOverTotalLimitQuantities(ArrayList<Integer> quantities) {
+        int totalQuantities = 0;
+
+        for (Integer quantity : quantities) {
+            totalQuantities += quantity;
+        }
+
+        if (totalQuantities >= totalLimitQuantities) {
+            throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 " + totalLimitQuantities + "개까지만 주문할 수 있습니다.");
         }
     }
 }
