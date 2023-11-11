@@ -20,11 +20,12 @@ public class Order {
 
         for (String menuAndQuantityPair : menuAndQuantityPairs) {
             String[] menuAndQuantity = menuAndQuantityPair.split("-");
-            menus.add(menuAndQuantity[0]);
+            menus.add((menuAndQuantity[0]));
             quantities.add(Integer.parseInt(menuAndQuantity[1]));
         }
 
         containsNonExistingMenu(menus);
+//        containsOnlyDrinks(menus);
     }
 
     private void isProperFormat(String[] menuAndOrderQuantityPairs) {
