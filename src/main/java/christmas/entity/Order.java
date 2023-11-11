@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Order {
-    private HashMap<Menu, Integer> order;
+    private HashMap<Menu, Integer> order = new HashMap<>();
     final static int totalLimitQuantities = 20;
 
     public Order(String[] menuAndQuantityPairs) {
@@ -21,6 +21,16 @@ public class Order {
 
         for (String menuAndQuantityPair : menuAndQuantityPairs) {
             String[] menuAndQuantity = menuAndQuantityPair.split("-");
+
+            Menu menu = Enum.valueOf(Menu.class, menuAndQuantity[0]);
+            Integer quantity = Integer.parseInt(menuAndQuantity[1]);
+
+            if (order.containsKey(menu)) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            }
+
+            order.put(menu, quantity);
+
             menus.add(Enum.valueOf(Menu.class, menuAndQuantity[0]));
             quantities.add(Integer.parseInt(menuAndQuantity[1]));
         }
