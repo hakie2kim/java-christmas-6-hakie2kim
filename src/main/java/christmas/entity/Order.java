@@ -75,4 +75,16 @@ public class Order {
 
         return numberOfDessertMenu;
     }
+
+    public int getNumberOfMainMenu() {
+        int numberOfMainMenu = 0;
+
+        for (Menu menu : order.keySet()) {
+            if (menu.getType().equals("메인")) {
+                numberOfMainMenu += order.get(menu);
+            }
+        }
+
+        return numberOfMainMenu;
+    }
 }

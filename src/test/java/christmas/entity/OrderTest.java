@@ -48,4 +48,11 @@ class OrderTest {
         assertThat(new Order(new String[]{"티본스테이크-1", "아이스크림-3", "초코케이크-1"}).getNumberOfDesertMenu())
                 .isEqualTo(4);
     }
+
+    @DisplayName("메인 메뉴의 개수 확인하기")
+    @Test
+    void createOrderByFiveMainMenu() {
+        assertThat(new Order(new String[]{"바비큐립-1", "크리스마스파스타-4", "초코케이크-1"}).getNumberOfMainMenu())
+                .isEqualTo(5);
+    }
 }

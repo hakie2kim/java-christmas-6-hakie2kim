@@ -11,7 +11,6 @@ public class WeekdayEvent extends Event {
 
     protected int calculateDiscount() {
         if (reservationDayOfWeek == 7 || 1 <= reservationDayOfWeek && reservationDayOfWeek <= 4) {
-            System.out.println(super.order.getNumberOfDesertMenu());
             return super.order.getNumberOfDesertMenu() * 2023;
         }
 
