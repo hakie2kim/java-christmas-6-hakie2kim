@@ -5,7 +5,6 @@ import christmas.entity.Order;
 public class SpecialEvent extends Event {
     SpecialEvent(int date, Order order) {
         super(date, order);
-        this.name = "특별 할인";
         this.discountBenefit = calculateDiscountBenefit();
     }
 
@@ -15,5 +14,10 @@ public class SpecialEvent extends Event {
         }
 
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "특별 할인";
     }
 }

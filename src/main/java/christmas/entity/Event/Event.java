@@ -11,9 +11,7 @@ public abstract class Event {
     protected final int reservationDayOfWeek;
     protected final int date;
     protected final Order order;
-    protected String name;
     protected int discountBenefit;
-
 
     protected Event(int date, Order order) {
         verifyDate(date);

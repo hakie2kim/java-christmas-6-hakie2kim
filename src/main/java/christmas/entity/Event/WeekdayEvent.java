@@ -5,7 +5,6 @@ import christmas.entity.Order;
 public class WeekdayEvent extends Event {
     WeekdayEvent(int date, Order order) {
         super(date, order);
-        this.name = "평일 할인";
         this.discountBenefit = calculateDiscountBenefit();
     }
 
@@ -15,5 +14,10 @@ public class WeekdayEvent extends Event {
         }
 
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "평일 할인";
     }
 }
