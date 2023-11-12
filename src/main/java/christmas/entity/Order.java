@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class Order {
     private HashMap<Menu, Integer> order = new HashMap<>();
-    final static int totalLimitQuantities = 20;
+    private final static int TOTAL_LIMIT_QUANTITITY = 20;
 
     public Order(String[] menuAndQuantityPairs) {
         validate(menuAndQuantityPairs);
@@ -59,8 +59,8 @@ public class Order {
             totalQuantities += quantity;
         }
 
-        if (totalQuantities >= totalLimitQuantities) {
-            throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 " + totalLimitQuantities + "개까지만 주문할 수 있습니다.");
+        if (totalQuantities >= TOTAL_LIMIT_QUANTITITY) {
+            throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 " + TOTAL_LIMIT_QUANTITITY + "개까지만 주문할 수 있습니다.");
         }
     }
 
@@ -86,5 +86,15 @@ public class Order {
         }
 
         return numberOfMainMenu;
+    }
+
+    public int calculateTotalAmount() {
+        int totalAmount = 0;
+
+        for (Menu menu : order.keySet()) {
+            totalAmount += menu.getPrice() * order.get(menu);
+        }
+
+        return totalAmount;
     }
 }

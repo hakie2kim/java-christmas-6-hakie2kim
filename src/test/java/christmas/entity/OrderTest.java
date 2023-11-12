@@ -55,4 +55,11 @@ class OrderTest {
         assertThat(new Order(new String[]{"바비큐립-1", "크리스마스파스타-4", "초코케이크-1"}).getNumberOfMainMenu())
                 .isEqualTo(5);
     }
+
+    @DisplayName("총 주문 금액 확인하기")
+    @Test
+    void checkTotalAmountOfOrder() {
+        assertThat(new Order(new String[]{"바비큐립-1", "크리스마스파스타-4", "초코케이크-1"}).getTotalAmount())
+                .isEqualTo(169000);
+    }
 }
