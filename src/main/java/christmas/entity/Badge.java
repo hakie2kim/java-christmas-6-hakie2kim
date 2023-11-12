@@ -26,4 +26,21 @@ public class Badge {
     public int getTotalDiscountBenefit() {
         return totalDiscountBenefit;
     }
+
+    @Override
+    public String toString() {
+        if (totalDiscountBenefit < 5000) {
+            return "없음";
+        }
+
+        if (totalDiscountBenefit < 10000) {
+            return "별";
+        }
+
+        if (totalDiscountBenefit < 20000) {
+            return "트리";
+        }
+
+        return "산타";
+    }
 }

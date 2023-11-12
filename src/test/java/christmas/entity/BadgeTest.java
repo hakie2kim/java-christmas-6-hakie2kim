@@ -30,4 +30,10 @@ class BadgeTest {
         assertThat(new Badge(events).getTotalDiscountBenefit()).isEqualTo(31069);
     }
 
+    @DisplayName("이벤트 배지를 확인한다.")
+    @Test
+    void checkEventBadgeBySanta() {
+        assertThat(new Badge(events).toString()).isEqualTo("산타");
+    }
+
 }
