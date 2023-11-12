@@ -18,4 +18,8 @@ public abstract class Event {
     }
 
     protected abstract int calculateDiscount(int date);
+
+    public int getDiscount() {
+        return discount;
+    }
 }
