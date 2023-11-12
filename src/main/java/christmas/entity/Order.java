@@ -8,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Order {
-//    private int date;
+    //    private int date;
     private HashMap<Menu, Integer> order = new HashMap<>();
     private final static int TOTAL_LIMIT_QUANTITITY = 20;
 
@@ -35,7 +35,11 @@ public class Order {
             order.put(menu, quantity);
 
             menus.add(Enum.valueOf(Menu.class, menuAndQuantity[0]));
-            quantities.add(Integer.parseInt(menuAndQuantity[1]));
+            try {
+                quantities.add(Integer.parseInt(menuAndQuantity[1]));
+            } catch (IllegalArgumentException illegalArgumentException) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            }
         }
 
         isOverTotalLimitQuantities(quantities);

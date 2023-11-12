@@ -11,6 +11,8 @@ public class Output {
     }
 
     public static void printMenu() {
+        System.out.println("<메뉴판>");
+        System.out.println();
         System.out.println("<애피타이저>");
         System.out.println("양송이수프(6,000), 타파스(5,500), 시저샐러드(8,000)");
         System.out.println();
@@ -22,16 +24,20 @@ public class Output {
         System.out.println();
         System.out.println("<음료>");
         System.out.println("제로콜라(3,000), 레드와인(60,000), 샴페인(25,000)");
+        System.out.println();
     }
 
     public static void printCautions() {
+        System.out.println("<주의사항>");
         System.out.println("총주문 금액 10,000원 이상부터 이벤트가 적용됩니다.");
         System.out.println("음료만 주문 시, 주문할 수 없습니다.");
         System.out.println("메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
+        System.out.println();
     }
 
     public static void printExpectedVisitingDate(int expectedVisitingDate) {
         System.out.println("12월 " + expectedVisitingDate + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+        System.out.println();
     }
 
     public static void printMenuOrdered(HashMap<Menu, Integer> order) {
@@ -61,15 +67,16 @@ public class Output {
 
     public static void printBenefits(HashMap<String, Integer> benefits) {
         System.out.println("<혜택 내역>");
+
         for (String event : benefits.keySet()) {
             int benefitAmount = benefits.get(event);
 
             if (benefitAmount == 0) {
-                System.out.println("없음");
+                System.out.printf("%s (%s)%n", "없음", event);
             }
 
             if (benefitAmount > 0) {
-                System.out.printf("%s: -%s%n", event, formatAmount(benefits.get(event)));
+                System.out.printf("%s: -%s%n", event, formatAmount(benefitAmount));
             }
         }
         System.out.println();
@@ -92,4 +99,7 @@ public class Output {
         System.out.println(badge);
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

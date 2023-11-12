@@ -14,36 +14,45 @@ public class EventPlannerApplication {
     private Badge badge;
     private int expectedVisitingDate;
     private Event christmasDdayEvent;
-    private Event freeGiftEvent;
+    private FreeGiftEvent freeGiftEvent;
     private Event specialEvent;
     private Event weekdayEvent;
     private Event weekendEvent;
 
     void execute() {
-        Output.printWelcomeMessage();
+        try {
+            Output.printWelcomeMessage();
 
-        expectedVisitingDate = Integer.parseInt(Input.readExpectedVisitingDate());
-        Output.printMenu();
-        Output.printCautions();
-        order = new Order(Input.readOrder());
+            try {
+                expectedVisitingDate = Integer.parseInt(Input.readExpectedVisitingDate());
+            } catch (IllegalArgumentException illegalArgumentException) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            }
 
-        ArrayList<Event> events = new ArrayList<>();
-        christmasDdayEvent = new ChristmasDdayEvent(expectedVisitingDate, order);
-        freeGiftEvent = new FreeGiftEvent(expectedVisitingDate, order);
-        specialEvent = new SpecialEvent(expectedVisitingDate, order);
-        weekdayEvent = new WeekdayEvent(expectedVisitingDate, order);
-        weekendEvent = new WeekendEvent(expectedVisitingDate, order);
+            Output.printMenu();
+            Output.printCautions();
+            order = new Order(Input.readOrder());
 
-        badge = new Badge(Arrays.asList(christmasDdayEvent, freeGiftEvent, specialEvent, weekdayEvent, weekendEvent));
+            ArrayList<Event> events = new ArrayList<>();
+            christmasDdayEvent = new ChristmasDdayEvent(expectedVisitingDate, order);
+            freeGiftEvent = new FreeGiftEvent(expectedVisitingDate, order);
+            specialEvent = new SpecialEvent(expectedVisitingDate, order);
+            weekdayEvent = new WeekdayEvent(expectedVisitingDate, order);
+            weekendEvent = new WeekendEvent(expectedVisitingDate, order);
 
-        Output.printExpectedVisitingDate(expectedVisitingDate);
-        Output.printMenuOrdered(order.getOrder());
-        Output.printTotalAmountBeforeDiscount(order.calculateTotalAmountBeforeDiscount());
-        Output.printFreeGift(specialEvent.toString());
-        Output.printBenefits(badge.getBenefits());
-        Output.printTotalDiscountBenefit(badge.getTotalDiscountBenefit());
-        Output.printTotalAmountAfterDiscount(calculateTotalAmountAfterDiscount());
-        Output.printBadge(badge.toString());
+            badge = new Badge(Arrays.asList(christmasDdayEvent, freeGiftEvent, specialEvent, weekdayEvent, weekendEvent));
+
+            Output.printExpectedVisitingDate(expectedVisitingDate);
+            Output.printMenuOrdered(order.getOrder());
+            Output.printTotalAmountBeforeDiscount(order.calculateTotalAmountBeforeDiscount());
+            Output.printFreeGift(freeGiftEvent.getFreeGift());
+            Output.printBenefits(badge.getBenefits());
+            Output.printTotalDiscountBenefit(badge.getTotalDiscountBenefit());
+            Output.printTotalAmountAfterDiscount(calculateTotalAmountAfterDiscount());
+            Output.printBadge(badge.toString());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            Output.printErrorMessage(illegalArgumentException.getMessage());
+        }
     }
 
     private int calculateTotalAmountAfterDiscount() {
