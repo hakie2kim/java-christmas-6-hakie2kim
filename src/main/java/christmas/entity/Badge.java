@@ -2,6 +2,7 @@ package christmas.entity;
 
 import christmas.entity.Event.Event;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class Badge {
@@ -25,6 +26,15 @@ public class Badge {
 
     public int getTotalDiscountBenefit() {
         return totalDiscountBenefit;
+    }
+
+    public HashMap<String, Integer> getBenefits() {
+        HashMap<String, Integer> benefits = new HashMap<>();
+        for (Event event : events) {
+            benefits.put(event.toString(), event.getDiscountBenefit());
+        }
+
+        return benefits;
     }
 
     @Override

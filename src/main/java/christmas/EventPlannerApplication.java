@@ -27,7 +27,6 @@ public class EventPlannerApplication {
         Output.printCautions();
         order = new Order(Input.readOrder());
 
-
         ArrayList<Event> events = new ArrayList<>();
         christmasDdayEvent = new ChristmasDdayEvent(expectedVisitingDate, order);
         freeGiftEvent = new FreeGiftEvent(expectedVisitingDate, order);
@@ -41,7 +40,7 @@ public class EventPlannerApplication {
         Output.printMenuOrdered(order.getOrder());
         Output.printTotalAmountBeforeDiscount(order.calculateTotalAmountBeforeDiscount());
         Output.printFreeGift(specialEvent.toString());
-        Output.printBenefits();
+        Output.printBenefits(badge.getBenefits());
         Output.printTotalDiscountBenefit(badge.getTotalDiscountBenefit());
         Output.printTotalAmountAfterDiscount(calculateTotalAmountAfterDiscount());
         Output.printBadge(badge.toString());

@@ -59,8 +59,12 @@ public class Output {
         System.out.println();
     }
 
-    public static void printBenefits() {
-
+    public static void printBenefits(HashMap<String, Integer> benefits) {
+        System.out.println("<혜택 내역>");
+        for (String event : benefits.keySet()) {
+            System.out.printf("%s: -%s%n", event, formatAmount(benefits.get(event)));
+        }
+        System.out.println();
     }
 
     public static void printTotalDiscountBenefit(int totalDiscountBenefit) {
