@@ -10,7 +10,7 @@ public class WeekendEvent extends Event {
     }
 
     protected int calculateDiscount() {
-        if (4 <= reservationDayOfWeek && reservationDayOfWeek <= 7) {
+        if (5 <= reservationDayOfWeek && reservationDayOfWeek <= 6) {
             return super.order.getNumberOfMainMenu() * 2023;
         }
 
