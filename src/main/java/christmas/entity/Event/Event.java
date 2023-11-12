@@ -9,6 +9,7 @@ public abstract class Event {
     private final static int YEAR = 2023;
     private final static int MONTH = 12;
     protected final int reservationDayOfWeek;
+    protected final int date;
     protected final Order order;
     protected String name;
     protected int discount;
@@ -16,6 +17,7 @@ public abstract class Event {
 
     protected Event(int date, Order order) {
         verifyDate(date);
+        this.date = date;
         this.reservationDayOfWeek = getDayOfWeek(date);
         this.order = order;
     }
@@ -30,7 +32,7 @@ public abstract class Event {
         }
     }
 
-    protected abstract int calculateDiscount(int date);
+    protected abstract int calculateDiscount();
 
     public int getDiscount() {
         return discount;
