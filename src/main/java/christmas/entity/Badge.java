@@ -2,13 +2,13 @@ package christmas.entity;
 
 import christmas.entity.Event.Event;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Badge {
-    private ArrayList<Event> events;
+    private List<Event> events;
     private int totalDiscountBenefit;
 
-    public Badge(ArrayList<Event> events) {
+    public Badge(List<Event> events) {
         this.events = events;
         this.totalDiscountBenefit = calculateTotalDiscountBenefit();
     }

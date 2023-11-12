@@ -100,5 +100,8 @@ public class Order {
 
         return totalAmountBeforeBenefit;
     }
-    
+
+    public HashMap<Menu, Integer> getOrder() {
+        return order;
+    }
 }
