@@ -62,7 +62,15 @@ public class Output {
     public static void printBenefits(HashMap<String, Integer> benefits) {
         System.out.println("<혜택 내역>");
         for (String event : benefits.keySet()) {
-            System.out.printf("%s: -%s%n", event, formatAmount(benefits.get(event)));
+            int benefitAmount = benefits.get(event);
+
+            if (benefitAmount == 0) {
+                System.out.println("없음");
+            }
+
+            if (benefitAmount > 0) {
+                System.out.printf("%s: -%s%n", event, formatAmount(benefits.get(event)));
+            }
         }
         System.out.println();
     }
