@@ -10,8 +10,10 @@ import java.util.ArrayList;
 public class EventPlannerApplication {
     private Order order;
     private Badge badge;
+    private int expectedVisitingDate;
 
     void execute() {
+        int expectedVisitingDate = Integer.parseInt(Input.readExpectedVisitingDate());
         order = new Order(Input.readOrder());
 
         ArrayList<Event> events = new ArrayList<>();
