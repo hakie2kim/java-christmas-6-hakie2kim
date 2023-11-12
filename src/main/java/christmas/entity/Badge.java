@@ -8,7 +8,7 @@ public class Badge {
     private ArrayList<Event> events;
     private int totalDiscountBenefit;
 
-    Badge (ArrayList<Event> events) {
+    public Badge(ArrayList<Event> events) {
         this.events = events;
         this.totalDiscountBenefit = calculateTotalDiscountBenefit();
     }

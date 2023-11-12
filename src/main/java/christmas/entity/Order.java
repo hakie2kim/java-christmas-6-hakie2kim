@@ -1,11 +1,14 @@
 package christmas.entity;
 
+import christmas.entity.Event.*;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Order {
+//    private int date;
     private HashMap<Menu, Integer> order = new HashMap<>();
     private final static int TOTAL_LIMIT_QUANTITITY = 20;
 
@@ -88,13 +91,14 @@ public class Order {
         return numberOfMainMenu;
     }
 
-    public int calculateTotalAmount() {
-        int totalAmount = 0;
+    public int calculateTotalAmountBeforeDiscount() {
+        int totalAmountBeforeBenefit = 0;
 
         for (Menu menu : order.keySet()) {
-            totalAmount += menu.getPrice() * order.get(menu);
+            totalAmountBeforeBenefit += menu.getPrice() * order.get(menu);
         }
 
-        return totalAmount;
+        return totalAmountBeforeBenefit;
     }
+    
 }
