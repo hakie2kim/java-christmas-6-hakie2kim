@@ -1,10 +1,10 @@
 package christmas.entity.Event;
 
-import java.time.LocalDate;
+import christmas.entity.Order;
 
 public class ChristmasDdayEvent extends Event {
-    ChristmasDdayEvent(int date) {
-        verifyDate(date);
+    ChristmasDdayEvent(int date, Order order) {
+        super(date, order);
         this.name = "크리스마스 디데이 할인";
         this.discount = calculateDiscount(date);
     }

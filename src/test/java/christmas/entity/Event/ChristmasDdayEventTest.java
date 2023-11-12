@@ -1,5 +1,6 @@
 package christmas.entity.Event;
 
+import christmas.entity.Order;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,6 +19,7 @@ class ChristmasDdayEventTest {
             "25,3400"
     })
     void checkDiscountByDate(int date, int discount) {
-        assertThat(new ChristmasDdayEvent(date).getDiscount()).isEqualTo(discount);
+        Order order = new Order(new String[]{"해산물파스타-2", "시저샐러드-4"});
+        assertThat(new ChristmasDdayEvent(date, order).getDiscount()).isEqualTo(discount);
     }
 }

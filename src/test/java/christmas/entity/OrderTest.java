@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class OrderTest {
@@ -39,5 +40,12 @@ class OrderTest {
     @Test
     void createCorrectOrder() {
         assertDoesNotThrow(() -> new Order(new String[]{"해산물파스타-2", "시저샐러드-4"}));
+    }
+
+    @DisplayName("디저트 메뉴의 개수 확인하기")
+    @Test
+    void createOrderByFourDessertMenu() {
+        assertThat(new Order(new String[]{"티본스테이크-1", "아이스크림-3", "초코케이크-1"}).getNumberOfDesertMenu())
+                .isEqualTo(4);
     }
 }

@@ -63,4 +63,16 @@ public class Order {
             throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 " + totalLimitQuantities + "개까지만 주문할 수 있습니다.");
         }
     }
+
+    public int getNumberOfDesertMenu() {
+        int numberOfDessertMenu = 0;
+
+        for (Menu menu : order.keySet()) {
+            if (menu.getType().equals("디저트")) {
+                numberOfDessertMenu += order.get(menu);
+            }
+        }
+
+        return numberOfDessertMenu;
+    }
 }
