@@ -32,7 +32,7 @@ public abstract class Event {
 
     protected abstract int calculateDiscountBenefit();
 
-    public int getDiscount() {
+    public int getDiscountBenefit() {
         return discountBenefit;
     }
 }

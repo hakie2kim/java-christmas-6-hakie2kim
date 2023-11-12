@@ -1,17 +1,18 @@
 package christmas.entity.Event;
 
+import christmas.entity.Menu;
 import christmas.entity.Order;
 
 public class FreeGiftEvent extends Event {
     public final static String FREE_GIFT = "샴페인 1개";
-    FreeGiftEvent(int date, Order order) {
+    public FreeGiftEvent(int date, Order order) {
         super(date, order);
         this.discountBenefit = calculateDiscountBenefit();
     }
 
     protected int calculateDiscountBenefit() {
         if (isEligible()) {
-            return 1000;
+            return Menu.샴페인.getPrice();
         }
 
         return 0;

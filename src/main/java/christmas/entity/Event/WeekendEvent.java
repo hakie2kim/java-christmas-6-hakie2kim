@@ -3,7 +3,7 @@ package christmas.entity.Event;
 import christmas.entity.Order;
 
 public class WeekendEvent extends Event {
-    WeekendEvent(int date, Order order) {
+    public WeekendEvent(int date, Order order) {
         super(date, order);
         this.discountBenefit = calculateDiscountBenefit();
     }
