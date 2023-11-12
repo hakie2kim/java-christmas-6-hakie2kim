@@ -6,10 +6,10 @@ public class WeekendEvent extends Event {
     WeekendEvent(int date, Order order) {
         super(date, order);
         this.name = "주말 할인";
-        this.discount = calculateDiscount();
+        this.discountBenefit = calculateDiscountBenefit();
     }
 
-    protected int calculateDiscount() {
+    protected int calculateDiscountBenefit() {
         if (5 <= reservationDayOfWeek && reservationDayOfWeek <= 6) {
             return super.order.getNumberOfMainMenu() * 2023;
         }

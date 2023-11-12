@@ -6,10 +6,10 @@ public class SpecialEvent extends Event {
     SpecialEvent(int date, Order order) {
         super(date, order);
         this.name = "특별 할인";
-        this.discount = calculateDiscount();
+        this.discountBenefit = calculateDiscountBenefit();
     }
 
-    protected int calculateDiscount() {
+    protected int calculateDiscountBenefit() {
         if (reservationDayOfWeek == 7 || date == 25) {
             return 1000;
         }

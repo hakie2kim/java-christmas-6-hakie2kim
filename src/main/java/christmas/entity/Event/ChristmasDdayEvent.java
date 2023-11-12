@@ -6,10 +6,10 @@ public class ChristmasDdayEvent extends Event {
     ChristmasDdayEvent(int date, Order order) {
         super(date, order);
         this.name = "크리스마스 디데이 할인";
-        this.discount = calculateDiscount();
+        this.discountBenefit = calculateDiscountBenefit();
     }
 
-    protected int calculateDiscount() {
+    protected int calculateDiscountBenefit() {
         if (super.date > 25) {
             return 0;
         }

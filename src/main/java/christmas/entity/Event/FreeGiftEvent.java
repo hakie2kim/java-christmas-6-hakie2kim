@@ -7,11 +7,11 @@ public class FreeGiftEvent extends Event {
     FreeGiftEvent(int date, Order order) {
         super(date, order);
         this.name = "증정 이벤트";
-        this.discount = calculateDiscount();
+        this.discountBenefit = calculateDiscountBenefit();
     }
 
-    protected int calculateDiscount() {
-        if (reservationDayOfWeek == 7 || date == 25) {
+    protected int calculateDiscountBenefit() {
+        if (order.calculateTotalAmount() >= 120000) {
             return 1000;
         }
 

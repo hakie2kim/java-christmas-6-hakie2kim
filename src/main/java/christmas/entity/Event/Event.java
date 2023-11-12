@@ -12,7 +12,7 @@ public abstract class Event {
     protected final int date;
     protected final Order order;
     protected String name;
-    protected int discount;
+    protected int discountBenefit;
 
 
     protected Event(int date, Order order) {
@@ -32,9 +32,9 @@ public abstract class Event {
         }
     }
 
-    protected abstract int calculateDiscount();
+    protected abstract int calculateDiscountBenefit();
 
     public int getDiscount() {
-        return discount;
+        return discountBenefit;
     }
 }
