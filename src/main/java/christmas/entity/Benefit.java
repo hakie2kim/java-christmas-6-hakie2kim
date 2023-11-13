@@ -3,7 +3,6 @@ package christmas.entity;
 import christmas.entity.Event.*;
 import christmas.util.Converter;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Benefit {
@@ -52,11 +51,14 @@ public class Benefit {
 
         return "산타";
     }
+
     public String getEventAndDiscounts() {
         StringBuffer eventAndDiscounts = new StringBuffer();
 
         for (Event event : events) {
-            eventAndDiscounts.append(String.format("%s: -%s%n", event.toString(), Converter.amountCurrencyFormatted(event.getDiscount())));
+            if (event.getDiscount() != 0) {
+                eventAndDiscounts.append(String.format("%s: -%s%n", event, Converter.amountCurrencyFormatted(event.getDiscount())));
+            }
         }
 
         if (getTotalDiscounts() == 0) {
