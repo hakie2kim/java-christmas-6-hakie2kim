@@ -13,6 +13,6 @@ class WeekdayEventTest {
     @CsvSource({"12,12138", "9,0"})
     void checkDiscountByDate(int date, int discount) {
         Order order = new Order(new String[]{"아이스크림-2", "초코케이크-4", "티본스테이크-1"});
-        assertThat(new WeekdayEvent(date, order).getDiscountBenefit()).isEqualTo(discount);
+        assertThat(new WeekdayEvent(date, order).getDiscount()).isEqualTo(discount);
     }
 }

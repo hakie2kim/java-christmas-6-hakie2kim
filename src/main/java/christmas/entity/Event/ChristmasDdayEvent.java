@@ -5,10 +5,10 @@ import christmas.entity.Order;
 public class ChristmasDdayEvent extends Event {
     public ChristmasDdayEvent(int date, Order order) {
         super(date, order);
-        this.discountBenefit = calculateDiscountBenefit();
+        this.discount = calculateDiscount();
     }
 
-    protected int calculateDiscountBenefit() {
+    protected int calculateDiscount() {
         if (super.date > 25) {
             return 0;
         }

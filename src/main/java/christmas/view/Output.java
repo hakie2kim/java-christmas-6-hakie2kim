@@ -1,6 +1,7 @@
 package christmas.view;
 
 import christmas.entity.Menu;
+import christmas.util.Converter;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -48,14 +49,9 @@ public class Output {
         System.out.println();
     }
 
-    private static String formatAmount(int amount) {
-        String formattedAmount = new DecimalFormat("#,###").format(amount);
-        return String.format("%s원", formattedAmount);
-    }
-
     public static void printTotalAmountBeforeDiscount(int totalAmountBeforeDiscount) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(formatAmount(totalAmountBeforeDiscount));
+        System.out.println(Converter.amountCurrencyFormatted(totalAmountBeforeDiscount));
         System.out.println();
     }
 
@@ -65,32 +61,21 @@ public class Output {
         System.out.println();
     }
 
-    public static void printBenefits(HashMap<String, Integer> benefits) {
+    public static void printBenefits(String eventAndDiscounts) {
         System.out.println("<혜택 내역>");
-
-        for (String event : benefits.keySet()) {
-            int benefitAmount = benefits.get(event);
-
-            if (benefitAmount == 0) {
-                System.out.printf("%s (%s)%n", "없음", event);
-            }
-
-            if (benefitAmount > 0) {
-                System.out.printf("%s: -%s%n", event, formatAmount(benefitAmount));
-            }
-        }
+        System.out.println(eventAndDiscounts);
         System.out.println();
     }
 
     public static void printTotalDiscountBenefit(int totalDiscountBenefit) {
         System.out.println("<총혜택 금액>");
-        System.out.println(formatAmount(totalDiscountBenefit));
+        System.out.println(Converter.amountCurrencyFormatted(totalDiscountBenefit));
         System.out.println();
     }
 
     public static void printTotalAmountAfterDiscount(int totalAmountAfterDiscount) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(formatAmount(totalAmountAfterDiscount));
+        System.out.println(Converter.amountCurrencyFormatted(totalAmountAfterDiscount));
         System.out.println();
     }
 

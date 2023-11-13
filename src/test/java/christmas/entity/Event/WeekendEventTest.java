@@ -13,6 +13,6 @@ class WeekendEventTest {
     @CsvSource({"22,8092", "31,0"})
     void checkDiscountByDate(int date, int discount) {
         Order order = new Order(new String[]{"아이스크림-2", "크리스마스파스타-3", "티본스테이크-1"});
-        assertThat(new WeekendEvent(date, order).getDiscountBenefit()).isEqualTo(discount);
+        assertThat(new WeekendEvent(date, order).getDiscount()).isEqualTo(discount);
     }
 }

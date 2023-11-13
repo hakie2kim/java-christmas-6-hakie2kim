@@ -18,7 +18,7 @@ public class Badge {
         int totalDiscountBenefit = 0;
 
         for (Event event : events) {
-            totalDiscountBenefit += event.getDiscountBenefit();
+            totalDiscountBenefit += event.getDiscount();
         }
 
         return totalDiscountBenefit;
@@ -31,7 +31,7 @@ public class Badge {
     public HashMap<String, Integer> getBenefits() {
         HashMap<String, Integer> benefits = new HashMap<>();
         for (Event event : events) {
-            benefits.put(event.toString(), event.getDiscountBenefit());
+            benefits.put(event.toString(), event.getDiscount());
         }
 
         return benefits;

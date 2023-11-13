@@ -18,6 +18,6 @@ class ChristmasDdayEventTest {
     })
     void checkDiscountByDate(int date, int discount) {
         Order order = new Order(new String[]{"해산물파스타-2", "시저샐러드-4"});
-        assertThat(new ChristmasDdayEvent(date, order).getDiscountBenefit()).isEqualTo(discount);
+        assertThat(new ChristmasDdayEvent(date, order).getDiscount()).isEqualTo(discount);
     }
 }

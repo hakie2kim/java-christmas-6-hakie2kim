@@ -7,10 +7,10 @@ public class FreeGiftEvent extends Event {
     public final static String FREE_GIFT = "샴페인 1개";
     public FreeGiftEvent(int date, Order order) {
         super(date, order);
-        this.discountBenefit = calculateDiscountBenefit();
+        this.discount = calculateDiscount();
     }
 
-    protected int calculateDiscountBenefit() {
+    protected int calculateDiscount() {
         if (isEligible()) {
             return Menu.샴페인.getPrice();
         }

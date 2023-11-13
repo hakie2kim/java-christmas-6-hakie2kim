@@ -12,6 +12,6 @@ class FreeGiftEventTest {
     @Test
     void checkDiscountByTotalOrderAmount() {
         Order order = new Order(new String[]{"아이스크림-2", "초코케이크-4", "티본스테이크-3"});
-        assertThat(new FreeGiftEvent(30, order).getDiscountBenefit()).isEqualTo(Menu.샴페인.getPrice());
+        assertThat(new FreeGiftEvent(30, order).getDiscount()).isEqualTo(Menu.샴페인.getPrice());
     }
 }

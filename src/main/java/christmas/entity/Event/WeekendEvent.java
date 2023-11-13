@@ -5,10 +5,10 @@ import christmas.entity.Order;
 public class WeekendEvent extends Event {
     public WeekendEvent(int date, Order order) {
         super(date, order);
-        this.discountBenefit = calculateDiscountBenefit();
+        this.discount = calculateDiscount();
     }
 
-    protected int calculateDiscountBenefit() {
+    protected int calculateDiscount() {
         if (5 <= reservationDayOfWeek && reservationDayOfWeek <= 6) {
             return super.order.getNumberOfMainMenu() * 2023;
         }
