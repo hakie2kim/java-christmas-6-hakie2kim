@@ -3,6 +3,7 @@ package christmas;
 import christmas.entity.Badge;
 import christmas.entity.Event.*;
 import christmas.entity.Order;
+import christmas.util.Converter;
 import christmas.view.Input;
 import christmas.view.Output;
 
@@ -23,11 +24,7 @@ public class EventPlannerApplication {
         try {
             Output.printWelcomeMessage();
 
-            try {
-                expectedVisitingDate = Integer.parseInt(Input.readExpectedVisitingDate());
-            } catch (IllegalArgumentException illegalArgumentException) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
-            }
+            expectedVisitingDate = Converter.stringToInteger(Input.readExpectedVisitingDate(), "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
 
             Output.printMenu();
             Output.printCautions();

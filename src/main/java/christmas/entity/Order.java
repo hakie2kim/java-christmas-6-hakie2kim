@@ -1,6 +1,7 @@
 package christmas.entity;
 
 import christmas.entity.Event.*;
+import christmas.util.Converter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class Order {
             String[] menuAndQuantity = menuAndQuantityPair.split("-");
 
             Menu menu = Enum.valueOf(Menu.class, menuAndQuantity[0]);
-            Integer quantity = Integer.parseInt(menuAndQuantity[1]);
+            Integer quantity = Converter.stringToInteger(menuAndQuantity[1], "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
 
             if (order.containsKey(menu)) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
@@ -34,12 +35,8 @@ public class Order {
 
             order.put(menu, quantity);
 
-            menus.add(Enum.valueOf(Menu.class, menuAndQuantity[0]));
-            try {
-                quantities.add(Integer.parseInt(menuAndQuantity[1]));
-            } catch (IllegalArgumentException illegalArgumentException) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-            }
+            menus.add(menu);
+            quantities.add(quantity);
         }
 
         isOverTotalLimitQuantities(quantities);
