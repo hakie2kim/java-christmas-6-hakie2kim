@@ -43,9 +43,7 @@ public class Output {
 
     public static void printMenuOrdered(HashMap<Menu, Integer> order) {
         System.out.println("<주문 메뉴>");
-        for (Menu menu : order.keySet()) {
-            System.out.printf("%s %d개%n", menu.name(), order.get(menu));
-        }
+        order.forEach((menu, quantity) -> System.out.printf("%s %d개%n", menu.name(), quantity));
         System.out.println();
     }
 
