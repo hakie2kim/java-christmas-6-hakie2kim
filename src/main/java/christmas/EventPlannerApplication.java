@@ -26,7 +26,7 @@ public class EventPlannerApplication {
             Output.printMenuOrdered(order.getOrder());
             Output.printTotalAmountBeforeDiscount(order.calculateTotalAmountBeforeDiscount());
             Output.printFreeGift(benefit.getFreeGift());
-            Output.printBenefits(benefit.getEventAndDiscounts());
+            Output.printBenefits(benefit.getEvents());
             Output.printTotalDiscountBenefit(benefit.getTotalDiscounts());
             Output.printTotalAmountAfterDiscount(calculateTotalAmountAfterDiscount());
             Output.printBadge(benefit.getBadge());

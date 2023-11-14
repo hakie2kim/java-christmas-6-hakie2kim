@@ -52,20 +52,8 @@ public class Benefit {
         return "산타";
     }
 
-    public String getEventAndDiscounts() {
-        StringBuffer eventAndDiscounts = new StringBuffer();
-
-        for (Event event : events) {
-            if (event.getDiscount() != 0) {
-                eventAndDiscounts.append(String.format("%s: -%s%n", event, Converter.amountCurrencyFormatted(event.getDiscount())));
-            }
-        }
-
-        if (getTotalDiscounts() == 0) {
-            eventAndDiscounts = new StringBuffer("없음");
-        }
-
-        return eventAndDiscounts.toString();
+    public HashSet<Event> getEvents() {
+        return events;
     }
 
     public String getFreeGift() {

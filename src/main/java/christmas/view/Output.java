@@ -1,10 +1,12 @@
 package christmas.view;
 
+import christmas.entity.Event.Event;
 import christmas.entity.Menu;
 import christmas.util.Converter;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class Output {
     public static void printWelcomeMessage() {
@@ -59,9 +61,16 @@ public class Output {
         System.out.println();
     }
 
-    public static void printBenefits(String eventAndDiscounts) {
+    public static void printBenefits(HashSet<Event> events) {
         System.out.println("<혜택 내역>");
-        System.out.println(eventAndDiscounts);
+
+        if (events.stream().allMatch(event -> event.toString().isEmpty())) {
+            System.out.println("없음");
+            System.out.println();
+            return;
+        }
+
+        events.stream().filter(event -> !(event.toString().isEmpty())).forEach(System.out::println);
         System.out.println();
     }
 
