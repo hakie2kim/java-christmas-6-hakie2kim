@@ -1,15 +1,10 @@
 package christmas;
 
-import christmas.entity.Badge;
 import christmas.entity.Benefit;
-import christmas.entity.Event.*;
 import christmas.entity.Order;
 import christmas.util.Converter;
 import christmas.view.Input;
 import christmas.view.Output;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class EventPlannerApplication {
     private Order order;
