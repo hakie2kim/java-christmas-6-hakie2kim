@@ -43,15 +43,15 @@ public class Output {
         System.out.println();
     }
 
-    public static void printMenuOrdered(HashMap<Menu, Integer> order) {
+    public static void printOrderPurchase(HashMap<Menu, Integer> order) {
         System.out.println("<주문 메뉴>");
         order.forEach((menu, quantity) -> System.out.printf("%s %d개%n", menu.name(), quantity));
         System.out.println();
     }
 
-    public static void printTotalAmountBeforeDiscount(int totalAmountBeforeDiscount) {
+    public static void printTotalAmountBeforeDiscounts(int totalAmountBeforeDiscounts) {
         System.out.println("<할인 전 총주문 금액>");
-        System.out.println(Converter.amountCurrencyFormatted(totalAmountBeforeDiscount));
+        System.out.println(Converter.amountCurrencyFormatted(totalAmountBeforeDiscounts));
         System.out.println();
     }
 
@@ -61,7 +61,7 @@ public class Output {
         System.out.println();
     }
 
-    public static void printBenefits(HashSet<Event> events) {
+    public static void printBenefitEvents(HashSet<Event> events) {
         System.out.println("<혜택 내역>");
 
         if (events.stream().allMatch(event -> event.toString().isEmpty())) {
@@ -74,15 +74,15 @@ public class Output {
         System.out.println();
     }
 
-    public static void printTotalDiscountBenefit(int totalDiscountBenefit) {
+    public static void printTotalDiscounts(int totalDiscounts) {
         System.out.println("<총혜택 금액>");
-        System.out.println(Converter.amountCurrencyFormatted(totalDiscountBenefit));
+        System.out.println(Converter.amountCurrencyFormatted(totalDiscounts));
         System.out.println();
     }
 
-    public static void printTotalAmountAfterDiscount(int totalAmountAfterDiscount) {
+    public static void printTotalAmountAfterDiscounts(int totalAmountAfterDiscounts) {
         System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(Converter.amountCurrencyFormatted(totalAmountAfterDiscount));
+        System.out.println(Converter.amountCurrencyFormatted(totalAmountAfterDiscounts));
         System.out.println();
     }
 

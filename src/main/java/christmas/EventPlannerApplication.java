@@ -8,9 +8,6 @@ import christmas.view.Input;
 import christmas.view.Output;
 
 public class EventPlannerApplication {
-    private Order order;
-    private Benefit benefit;
-
     void execute() {
         try {
             Output.printWelcomeMessage();
@@ -23,12 +20,12 @@ public class EventPlannerApplication {
             );
 
             Output.printExpectedVisitingDate(customer.getExpectedVisitingDate());
-            Output.printMenuOrdered(customer.getOrder().getPurchase());
-            Output.printTotalAmountBeforeDiscount(customer.getOrder().getTotalAmountBeforeDiscounts());
+            Output.printOrderPurchase(customer.getOrder().getPurchase());
+            Output.printTotalAmountBeforeDiscounts(customer.getOrder().getTotalAmountBeforeDiscounts());
             Output.printFreeGift(customer.getBenefit().getFreeGift());
-            Output.printBenefits(customer.getBenefit().getEvents());
-            Output.printTotalDiscountBenefit(customer.getBenefit().getTotalDiscounts());
-            Output.printTotalAmountAfterDiscount(customer.getTotalAmountAfterDiscounts());
+            Output.printBenefitEvents(customer.getBenefit().getEvents());
+            Output.printTotalDiscounts(customer.getBenefit().getTotalDiscounts());
+            Output.printTotalAmountAfterDiscounts(customer.getTotalAmountAfterDiscounts());
             Output.printBadge(customer.getBenefit().getBadge());
         } catch (IllegalArgumentException illegalArgumentException) {
             Output.printErrorMessage(illegalArgumentException.getMessage());
