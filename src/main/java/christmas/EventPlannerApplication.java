@@ -1,6 +1,7 @@
 package christmas;
 
 import christmas.entity.Benefit;
+import christmas.entity.Customer;
 import christmas.entity.Order;
 import christmas.util.Converter;
 import christmas.view.Input;
@@ -13,30 +14,24 @@ public class EventPlannerApplication {
     void execute() {
         try {
             Output.printWelcomeMessage();
-
-            int expectedVisitingDate = Converter.stringToInteger(Input.readExpectedVisitingDate(), "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
-
             Output.printMenu();
             Output.printCautions();
-            order = new Order(Input.readOrder());
 
-            benefit = new Benefit(expectedVisitingDate, order);
+            Customer customer = new Customer(
+                    Converter.stringToInteger(Input.readExpectedVisitingDate(), "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."),
+                    new Order(Input.readOrder())
+            );
 
-            Output.printExpectedVisitingDate(expectedVisitingDate);
-            Output.printMenuOrdered(order.getOrder());
-            Output.printTotalAmountBeforeDiscount(order.calculateTotalAmountBeforeDiscount());
-            Output.printFreeGift(benefit.getFreeGift());
-            Output.printBenefits(benefit.getEvents());
-            Output.printTotalDiscountBenefit(benefit.getTotalDiscounts());
-            Output.printTotalAmountAfterDiscount(calculateTotalAmountAfterDiscount());
-            Output.printBadge(benefit.getBadge());
+            Output.printExpectedVisitingDate(customer.getExpectedVisitingDate());
+            Output.printMenuOrdered(customer.getOrder().getPurchase());
+            Output.printTotalAmountBeforeDiscount(customer.getOrder().getTotalAmountBeforeDiscounts());
+            Output.printFreeGift(customer.getBenefit().getFreeGift());
+            Output.printBenefits(customer.getBenefit().getEvents());
+            Output.printTotalDiscountBenefit(customer.getBenefit().getTotalDiscounts());
+            Output.printTotalAmountAfterDiscount(customer.getTotalAmountAfterDiscounts());
+            Output.printBadge(customer.getBenefit().getBadge());
         } catch (IllegalArgumentException illegalArgumentException) {
             Output.printErrorMessage(illegalArgumentException.getMessage());
         }
     }
-
-    private int calculateTotalAmountAfterDiscount() {
-        return order.calculateTotalAmountBeforeDiscount() - benefit.getTotalDiscounts();
-    }
-
 }

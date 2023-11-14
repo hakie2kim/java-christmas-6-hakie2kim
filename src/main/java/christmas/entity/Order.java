@@ -9,9 +9,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Order {
-    //    private int date;
-    private HashMap<Menu, Integer> order = new HashMap<>();
     private final static int TOTAL_LIMIT_QUANTITITY = 20;
+    private HashMap<Menu, Integer> purchase = new HashMap<>();
 
     public Order(String[] menuAndQuantityPairs) {
         validate(menuAndQuantityPairs);
@@ -29,11 +28,11 @@ public class Order {
             Menu menu = Enum.valueOf(Menu.class, menuAndQuantity[0]);
             Integer quantity = Converter.stringToInteger(menuAndQuantity[1], "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
 
-            if (order.containsKey(menu)) {
+            if (purchase.containsKey(menu)) {
                 throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
 
-            order.put(menu, quantity);
+            purchase.put(menu, quantity);
 
             menus.add(menu);
             quantities.add(quantity);
@@ -71,9 +70,9 @@ public class Order {
     public int getNumberOfDesertMenu() {
         int numberOfDessertMenu = 0;
 
-        for (Menu menu : order.keySet()) {
+        for (Menu menu : purchase.keySet()) {
             if (menu.getType().equals("디저트")) {
-                numberOfDessertMenu += order.get(menu);
+                numberOfDessertMenu += purchase.get(menu);
             }
         }
 
@@ -83,26 +82,30 @@ public class Order {
     public int getNumberOfMainMenu() {
         int numberOfMainMenu = 0;
 
-        for (Menu menu : order.keySet()) {
+        for (Menu menu : purchase.keySet()) {
             if (menu.getType().equals("메인")) {
-                numberOfMainMenu += order.get(menu);
+                numberOfMainMenu += purchase.get(menu);
             }
         }
 
         return numberOfMainMenu;
     }
 
-    public int calculateTotalAmountBeforeDiscount() {
-        int totalAmountBeforeBenefit = 0;
+    private int calculateTotalAmountBeforeDiscounts() {
+        int totalAmountBeforeDiscounts = 0;
 
-        for (Menu menu : order.keySet()) {
-            totalAmountBeforeBenefit += menu.getPrice() * order.get(menu);
+        for (Menu menu : purchase.keySet()) {
+            totalAmountBeforeDiscounts += menu.getPrice() * purchase.get(menu);
         }
 
-        return totalAmountBeforeBenefit;
+        return totalAmountBeforeDiscounts;
     }
 
-    public HashMap<Menu, Integer> getOrder() {
-        return order;
+    public int getTotalAmountBeforeDiscounts() {
+        return calculateTotalAmountBeforeDiscounts();
+    }
+
+    public HashMap<Menu, Integer> getPurchase() {
+        return purchase;
     }
 }

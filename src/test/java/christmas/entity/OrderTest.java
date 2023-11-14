@@ -59,7 +59,7 @@ class OrderTest {
     @DisplayName("총 주문 금액 확인하기")
     @Test
     void checkTotalAmountOfOrder() {
-        assertThat(new Order(new String[]{"바비큐립-1", "크리스마스파스타-4", "초코케이크-1"}).calculateTotalAmountBeforeDiscount())
+        assertThat(new Order(new String[]{"바비큐립-1", "크리스마스파스타-4", "초코케이크-1"}).getTotalAmountBeforeDiscounts())
                 .isEqualTo(169000);
     }
 }
