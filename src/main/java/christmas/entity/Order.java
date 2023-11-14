@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class Order {
     private final static int TOTAL_LIMIT_QUANTITITY = 20;
-    private HashMap<Menu, Integer> purchase = new HashMap<>();
+    private final HashMap<Menu, Integer> purchase = new HashMap<>();
 
     public Order(String[] menuAndQuantityPairs) {
         validate(menuAndQuantityPairs);

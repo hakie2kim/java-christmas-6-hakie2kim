@@ -6,10 +6,10 @@ import christmas.util.Converter;
 import java.util.HashSet;
 
 public class Benefit {
-    private HashSet<Event> events = new HashSet<>();
+    private final HashSet<Event> events = new HashSet<>();
     private FreeGiftEvent freeGiftEvent;
-    private int totalDiscounts;
-    private String badge;
+    private final int totalDiscounts;
+    private final String badge;
 
     public Benefit(int expectedVisitingDate, Order order) {
         addAllEvents(expectedVisitingDate, order);

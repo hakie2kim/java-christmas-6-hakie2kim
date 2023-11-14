@@ -1,9 +1,9 @@
 package christmas.entity;
 
 public class Customer {
-    private int expectedVisitingDate;
-    private Order order;
-    private Benefit benefit;
+    private final int expectedVisitingDate;
+    private final Order order;
+    private final Benefit benefit;
 
     public Customer(int expectedVisitingDate, Order order) {
         this.expectedVisitingDate = expectedVisitingDate;
