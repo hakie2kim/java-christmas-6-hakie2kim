@@ -34,6 +34,4 @@ class BenefitTest {
     void createEventBadgeBySanta() {
         assertThat(new Benefit(expectedVisitingDate, order).getBadge()).isEqualTo("산타");
     }
-
-
 }

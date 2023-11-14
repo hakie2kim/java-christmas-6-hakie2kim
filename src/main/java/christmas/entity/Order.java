@@ -62,7 +62,7 @@ public class Order {
             totalQuantities += quantity;
         }
 
-        if (totalQuantities >= TOTAL_LIMIT_QUANTITITY) {
+        if (totalQuantities > TOTAL_LIMIT_QUANTITITY) {
             throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 " + TOTAL_LIMIT_QUANTITITY + "개까지만 주문할 수 있습니다.");
         }
     }

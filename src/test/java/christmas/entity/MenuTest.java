@@ -13,8 +13,9 @@ class MenuTest {
     @DisplayName("존재하지 않는 메뉴를 확인한다.")
     @Test
     void createNonExistingMenu() {
-        assertThatThrownBy(() -> Menu.has("알리오올리오")).
-                isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Menu.has("알리오올리오"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("존재하는 메뉴를 확인한다.")
@@ -29,8 +30,9 @@ class MenuTest {
         Menu zeroCoke = Enum.valueOf(Menu.class, "제로콜라");
         Menu champagne = Enum.valueOf(Menu.class, "샴페인");
 
-        assertThatThrownBy(() -> Menu.containsOnlyDrinks(Arrays.asList(zeroCoke, champagne))).
-                isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> Menu.containsOnlyDrinks(Arrays.asList(zeroCoke, champagne)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("메뉴에 음료 외 다른 메뉴가 있는지 확인한다.")

@@ -12,28 +12,33 @@ class OrderTest {
     @Test
     void createOrderByWrongQuantity() {
         assertThatThrownBy(() -> new Order(new String[]{"아이스크림-21", "해산물파스타-18"}))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("잘못된 형식으로 주문하기")
     @Test
     void createOrderByWrongFormat() {
         assertThatThrownBy(() -> new Order(new String[]{"아이스크림-해산물파스타-2", "시저샐러드-4"}))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("중복된 메뉴를 포함하여 주문하기")
     @Test
     void createOrderByDuplicateMenu() {
         assertThatThrownBy(() -> new Order(new String[]{"해산물파스타-2", "해산물파스타-4"}))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("메뉴를 한번에 20개 넘게 주문하기")
     @Test
     void createOrderByExceedingQuantityLimit() {
-        assertThatThrownBy(() -> new Order(new String[]{"아이스크림-9", "시저샐러드-9", "해산물파스타-2"}))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Order(new String[]{"아이스크림-9", "시저샐러드-9", "해산물파스타-3"}))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 메뉴는 한 번에 최대");
+        ;
     }
 
     @DisplayName("정상적으로 주문하기")
