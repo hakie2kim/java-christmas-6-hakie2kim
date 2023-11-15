@@ -3,11 +3,11 @@ package christmas.util;
 import java.text.DecimalFormat;
 
 public class Converter {
-    public static int stringToInteger(String beforeConversion, String errorMessage) {
+    public static int stringToInteger(String beforeConversion, String message) {
         try {
             return Integer.parseInt(beforeConversion);
         } catch (NumberFormatException numberFormatException) {
-            throw new NumberFormatException(errorMessage);
+            throw new NumberFormatException(message);
         }
     }
 
