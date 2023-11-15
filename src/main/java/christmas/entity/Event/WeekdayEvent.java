@@ -12,7 +12,7 @@ public class WeekdayEvent extends Event {
         // 월-목, 일요일인 경우
         if (super.reservationDayOfWeek == 7 ||
                 1 <= super.reservationDayOfWeek && super.reservationDayOfWeek <= 4) {
-            return super.order.getNumberOfDessertMenu() * 2023;
+            return super.order.getNumberOfMenu("디저트") * 2023;
         }
         return 0;
     }

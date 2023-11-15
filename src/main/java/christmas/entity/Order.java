@@ -4,11 +4,14 @@ import christmas.util.Converter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Order {
     private final static int TOTAL_LIMIT_QUANTITY = 20;
+    private final ArrayList<Menu> menus = new ArrayList<Menu>();
+    private final ArrayList<Integer> quantities = new ArrayList<Integer>();
     private final HashMap<Menu, Integer> purchase = new HashMap<>();
 
     public Order(String[] menuAndQuantityPairs) {
@@ -17,28 +20,8 @@ public class Order {
 
     private void validate(String[] menuAndQuantityPairs) {
         isProperFormat(menuAndQuantityPairs);
-
-        ArrayList<Menu> menus = new ArrayList<Menu>();
-        ArrayList<Integer> quantities = new ArrayList<Integer>();
-
-        for (String menuAndQuantityPair : menuAndQuantityPairs) {
-            String[] menuAndQuantity = menuAndQuantityPair.split("-");
-
-            Menu menu = Enum.valueOf(Menu.class, menuAndQuantity[0]);
-            Integer quantity = Converter.stringToInteger(menuAndQuantity[1], "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-
-            if (purchase.containsKey(menu)) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-            }
-
-            purchase.put(menu, quantity);
-
-            menus.add(menu);
-            quantities.add(quantity);
-        }
-
+        extractMenuAndQuantity(menuAndQuantityPairs);
         isOverTotalLimitQuantities(quantities);
-
         Menu.containsOnlyDrinks(menus);
     }
 
@@ -54,50 +37,43 @@ public class Order {
         }
     }
 
-    private void isOverTotalLimitQuantities(ArrayList<Integer> quantities) {
-        int totalQuantities = 0;
+    private void extractMenuAndQuantity(String[] menuAndQuantityPairs) {
+        for (String menuAndQuantityPair : menuAndQuantityPairs) {
+            String[] menuAndQuantity = menuAndQuantityPair.split("-");
+            Menu menu = Enum.valueOf(Menu.class, menuAndQuantity[0]);
+            Integer quantity = Converter.stringToInteger(menuAndQuantity[1], "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
 
-        for (Integer quantity : quantities) {
-            totalQuantities += quantity;
+            if (purchase.containsKey(menu)) {
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            }
+
+            menus.add(menu);
+            quantities.add(quantity);
+            purchase.put(menu, quantity);
         }
+    }
+
+    private void isOverTotalLimitQuantities(ArrayList<Integer> quantities) {
+        int totalQuantities = quantities.stream()
+                .mapToInt(Integer::intValue)
+                .sum();
 
         if (totalQuantities > TOTAL_LIMIT_QUANTITY) {
             throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 " + TOTAL_LIMIT_QUANTITY + "개까지만 주문할 수 있습니다.");
         }
     }
 
-    public int getNumberOfDessertMenu() {
-        int numberOfDessertMenu = 0;
-
-        for (Menu menu : purchase.keySet()) {
-            if (menu.getType().equals("디저트")) {
-                numberOfDessertMenu += purchase.get(menu);
-            }
-        }
-
-        return numberOfDessertMenu;
-    }
-
-    public int getNumberOfMainMenu() {
-        int numberOfMainMenu = 0;
-
-        for (Menu menu : purchase.keySet()) {
-            if (menu.getType().equals("메인")) {
-                numberOfMainMenu += purchase.get(menu);
-            }
-        }
-
-        return numberOfMainMenu;
+    public int getNumberOfMenu(String type) {
+        return purchase.entrySet().stream()
+                .filter(entry -> entry.getKey().getType().equals(type))
+                .mapToInt(Map.Entry::getValue)
+                .sum();
     }
 
     private int calculateTotalAmountBeforeDiscounts() {
-        int totalAmountBeforeDiscounts = 0;
-
-        for (Menu menu : purchase.keySet()) {
-            totalAmountBeforeDiscounts += menu.getPrice() * purchase.get(menu);
-        }
-
-        return totalAmountBeforeDiscounts;
+        return purchase.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
     }
 
     public int getTotalAmountBeforeDiscounts() {
