@@ -1,6 +1,6 @@
 package christmas.entity;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public enum Menu {
@@ -17,22 +17,20 @@ public enum Menu {
     레드와인("음료", 60000),
     샴페인("음료", 25000);
 
-    private String type;
-    private int price;
+    private final String type;
+    private final int price;
 
     Menu(String type, int price) {
         this.type = type;
         this.price = price;
     }
 
-    public static ArrayList<String> names() {
+    private static HashSet<String> names() {
         Menu[] menus = values();
-        ArrayList<String> names = new ArrayList<>();
-
+        HashSet<String> names = new HashSet<>();
         for (Menu menu : menus) {
             names.add(menu.name());
         }
-
         return names;
     }
 
@@ -55,7 +53,6 @@ public enum Menu {
         if (containsOtherThanDrinks(menus)) { // 애피타이저, 메인, 디저트를 포함하고 있다면 예외를 발생하지 않는다.
             return;
         }
-
         throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.");
     }
 

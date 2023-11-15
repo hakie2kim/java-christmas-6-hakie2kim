@@ -40,6 +40,7 @@ public class Order {
     private void extractMenuAndQuantity(String[] menuAndQuantityPairs) {
         for (String menuAndQuantityPair : menuAndQuantityPairs) {
             String[] menuAndQuantity = menuAndQuantityPair.split("-");
+            Menu.has(menuAndQuantity[0]);
             Menu menu = Enum.valueOf(Menu.class, menuAndQuantity[0]);
             Integer quantity = Converter.stringToInteger(menuAndQuantity[1], "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
 
