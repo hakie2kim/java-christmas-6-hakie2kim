@@ -1,5 +1,6 @@
 package christmas;
 
+import christmas.controller.InputController;
 import christmas.entity.Benefit;
 import christmas.entity.Customer;
 import christmas.entity.Event.Event;
@@ -15,20 +16,14 @@ public class EventPlannerApplication {
     void execute() {
         try {
             printWelcome();
-            readInputs();
-            Customer customer = new Customer(expectedVisitingDate, order);
+            Customer customer = new Customer(
+                    InputController.setExpectedVisitingDate(),
+                    InputController.setOrder()
+            );
             printDetails(customer);
         } catch (IllegalArgumentException illegalArgumentException) {
             Output.printErrorMessage(illegalArgumentException.getMessage());
         }
-    }
-
-    private void readInputs() {
-        int expectedVisitingDate = Converter.stringToInteger(Input.readExpectedVisitingDate(),
-                "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
-        Event.verifyDate(expectedVisitingDate);
-        this.expectedVisitingDate = expectedVisitingDate;
-        order = new Order(Input.readOrder());
     }
 
     private void printWelcome() {
