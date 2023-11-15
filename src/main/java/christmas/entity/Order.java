@@ -1,6 +1,5 @@
 package christmas.entity;
 
-import christmas.entity.Event.*;
 import christmas.util.Converter;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Order {
-    private final static int TOTAL_LIMIT_QUANTITITY = 20;
+    private final static int TOTAL_LIMIT_QUANTITY = 20;
     private final HashMap<Menu, Integer> purchase = new HashMap<>();
 
     public Order(String[] menuAndQuantityPairs) {
@@ -62,8 +61,8 @@ public class Order {
             totalQuantities += quantity;
         }
 
-        if (totalQuantities > TOTAL_LIMIT_QUANTITITY) {
-            throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 " + TOTAL_LIMIT_QUANTITITY + "개까지만 주문할 수 있습니다.");
+        if (totalQuantities > TOTAL_LIMIT_QUANTITY) {
+            throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 " + TOTAL_LIMIT_QUANTITY + "개까지만 주문할 수 있습니다.");
         }
     }
 
