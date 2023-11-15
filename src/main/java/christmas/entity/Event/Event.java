@@ -10,10 +10,10 @@ public abstract class Event {
     private final static int YEAR = 2023;
     public final static int MONTH = 12;
     public final static int LAST_DAY_OF_MONTH;
-    protected final int reservationDayOfWeek; // 월요일 1부터 일요일 7까지
+    protected final int RESERVATION_DAY_OF_WEEK; // 월요일 1부터 일요일 7까지
     protected final String NAME;
-    protected final int date;
-    protected final Order order;
+    protected final int DATE;
+    protected final Order ORDER;
     protected int discount;
 
     static {
@@ -25,9 +25,9 @@ public abstract class Event {
     protected Event(String name, int date, Order order) {
         NAME = name;
         verifyDate(date);
-        this.date = date;
-        this.reservationDayOfWeek = getDayOfWeek(date);
-        this.order = order;
+        DATE = date;
+        RESERVATION_DAY_OF_WEEK = getDayOfWeek(date);
+        ORDER = order;
     }
 
     protected int getDayOfWeek(int date) {

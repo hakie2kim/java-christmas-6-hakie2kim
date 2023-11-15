@@ -9,7 +9,7 @@ public class SpecialEvent extends Event {
     }
 
     protected int calculateDiscount() {
-        if (super.reservationDayOfWeek == 7 || super.date == 25) { // 일요일이거나 크리스마스인 경우
+        if (super.reservationDayOfWeek == 7 || super.DATE == 25) { // 일요일이거나 크리스마스인 경우
             return 1000;
         }
         return 0;
