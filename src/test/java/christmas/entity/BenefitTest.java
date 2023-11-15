@@ -7,21 +7,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BenefitTest {
-    private int expectedVisitingDate = 30;
+    private final int expectedVisitingDate = 30;
     private Order order = new Order(new String[]{"아이스크림-2", "초코케이크-4", "티본스테이크-3"});
-
-    @DisplayName("증정 메뉴를 확인한다.")
-    @Test
-    void createFreeGiftEligible() {
-        assertThat(new Benefit(expectedVisitingDate, order).getFreeGift()).isEqualTo("샴페인 1개");
-    }
-
-    @DisplayName("증정 메뉴를 확인한다.")
-    @Test
-    void createFreeGiftNotEligible() {
-        order = new Order(new String[]{"아이스크림-1", "시저샐러드-1", "바비큐립-1"});
-        assertThat(new Benefit(expectedVisitingDate, order).getFreeGift()).isEqualTo("없음");
-    }
 
     @DisplayName("총 혜택 금액을 확인한다.")
     @Test

@@ -21,7 +21,7 @@ public class EventPlannerApplication {
             Output.printExpectedVisitingDate(customer.getExpectedVisitingDate());
             Output.printOrderPurchase(customer.getOrder().getPurchase());
             Output.printTotalAmountBeforeDiscounts(customer.getOrder().getTotalAmountBeforeDiscounts());
-            Output.printFreeGift(customer.getBenefit().getFreeGift());
+            Output.printFreeGift(customer.getBenefit().getFreeGiftEvent().getFreeGift());
             Output.printBenefitEvents(customer.getBenefit().getEvents());
             Output.printTotalDiscounts(customer.getBenefit().getTotalDiscounts());
             Output.printTotalAmountAfterDiscounts(customer.getTotalAmountAfterDiscounts());

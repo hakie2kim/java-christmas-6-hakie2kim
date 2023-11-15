@@ -12,12 +12,12 @@ public class Benefit {
     private final String badge;
 
     public Benefit(int expectedVisitingDate, Order order) {
-        addAllEvents(expectedVisitingDate, order);
+        addEvents(expectedVisitingDate, order);
         this.totalDiscounts = calculateTotalDiscounts();
         this.badge = decideBadge();
     }
 
-    private void addAllEvents(int expectedVisitingDate, Order order) {
+    private void addEvents(int expectedVisitingDate, Order order) {
         events.add(new ChristmasDdayEvent(expectedVisitingDate, order));
         freeGiftEvent = new FreeGiftEvent(expectedVisitingDate, order);
         events.add(freeGiftEvent);
@@ -27,28 +27,21 @@ public class Benefit {
     }
 
     private int calculateTotalDiscounts() {
-        int totalDiscounts = 0;
-
-        for (Event event : events) {
-            totalDiscounts += event.getDiscount();
-        }
-
-        return totalDiscounts;
+        return events.stream()
+                .mapToInt(Event::getDiscount)
+                .sum();
     }
 
     private String decideBadge() {
         if (totalDiscounts < 5000) {
             return "없음";
         }
-
         if (totalDiscounts < 10000) {
             return "별";
         }
-
         if (totalDiscounts < 20000) {
             return "트리";
         }
-
         return "산타";
     }
 
@@ -56,8 +49,8 @@ public class Benefit {
         return events;
     }
 
-    public String getFreeGift() {
-        return freeGiftEvent.getFreeGift();
+    public FreeGiftEvent getFreeGiftEvent() {
+        return freeGiftEvent;
     }
 
     public int getTotalDiscounts() {
@@ -67,5 +60,4 @@ public class Benefit {
     public String getBadge() {
         return badge;
     }
-
 }
