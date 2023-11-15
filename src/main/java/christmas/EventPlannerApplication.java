@@ -11,23 +11,31 @@ import christmas.view.Output;
 public class EventPlannerApplication {
     void execute() {
         try {
-            Output.printWelcomeMessage(Event.MONTH);
-            Output.printMenu();
-            Output.printCautions();
+            printWelcome();
             Customer customer = new Customer(
                     Converter.stringToInteger(Input.readExpectedVisitingDate(), "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."),
                     new Order(Input.readOrder())
             );
-            Output.printExpectedVisitingDate(customer.getExpectedVisitingDate());
-            Output.printOrderPurchase(customer.getOrder().getPurchase());
-            Output.printTotalAmountBeforeDiscounts(customer.getOrder().getTotalAmountBeforeDiscounts());
-            Output.printFreeGift(customer.getBenefit().getFreeGiftEvent().getFreeGift());
-            Output.printBenefitEvents(customer.getBenefit().getEvents());
-            Output.printTotalDiscounts(customer.getBenefit().getTotalDiscounts());
-            Output.printTotalAmountAfterDiscounts(customer.getTotalAmountAfterDiscounts());
-            Output.printBadge(customer.getBenefit().getBadge());
+            printDetails(customer);
         } catch (IllegalArgumentException illegalArgumentException) {
             Output.printErrorMessage(illegalArgumentException.getMessage());
         }
+    }
+
+    private void printWelcome() {
+        Output.printWelcomeMessage(Event.MONTH);
+        Output.printMenu();
+        Output.printCautions();
+    }
+
+    private void printDetails(Customer customer) {
+        Output.printExpectedVisitingDate(customer.getExpectedVisitingDate());
+        Output.printOrderPurchase(customer.getOrder().getPurchase());
+        Output.printTotalAmountBeforeDiscounts(customer.getOrder().getTotalAmountBeforeDiscounts());
+        Output.printFreeGift(customer.getBenefit().getFreeGiftEvent().getFreeGift());
+        Output.printBenefitEvents(customer.getBenefit().getEvents());
+        Output.printTotalDiscounts(customer.getBenefit().getTotalDiscounts());
+        Output.printTotalAmountAfterDiscounts(customer.getTotalAmountAfterDiscounts());
+        Output.printBadge(customer.getBenefit().getBadge());
     }
 }
