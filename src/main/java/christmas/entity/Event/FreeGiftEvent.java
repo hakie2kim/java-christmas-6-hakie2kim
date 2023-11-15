@@ -13,7 +13,7 @@ public class FreeGiftEvent extends Event {
     }
 
     private boolean isEligible() {
-        return super.ORDER.getTotalAmountBeforeDiscounts() >= AMOUNT_ELIGIBILITY;
+        return super.order.getTotalAmountBeforeDiscounts() >= AMOUNT_ELIGIBILITY;
     }
 
     protected int calculateDiscount() {

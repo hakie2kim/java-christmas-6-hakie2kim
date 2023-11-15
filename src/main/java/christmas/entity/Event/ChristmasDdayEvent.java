@@ -9,9 +9,9 @@ public class ChristmasDdayEvent extends Event {
     }
 
     protected int calculateDiscount() {
-        if (super.DATE > 25) { // 크리스마스를 지난 경우
+        if (super.date > 25) { // 크리스마스를 지난 경우
             return 0;
         }
-        return 1000 + (super.DATE - 1) * 100;
+        return 1000 + (super.date - 1) * 100;
     }
 }

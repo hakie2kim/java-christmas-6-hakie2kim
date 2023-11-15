@@ -10,10 +10,10 @@ public abstract class Event {
     private final static int YEAR = 2023;
     public final static int MONTH = 12;
     public final static int LAST_DAY_OF_MONTH;
-    protected final int RESERVATION_DAY_OF_WEEK; // 월요일 1부터 일요일 7까지
-    protected final String NAME;
-    protected final int DATE;
-    protected final Order ORDER;
+    protected final int reservationDayOfWeek; // 월요일 1부터 일요일 7까지
+    protected final String name;
+    protected final int date;
+    protected final Order order;
     protected int discount;
 
     static {
@@ -23,11 +23,11 @@ public abstract class Event {
     }
 
     protected Event(String name, int date, Order order) {
-        NAME = name;
+        this.name = name;
         verifyDate(date);
-        DATE = date;
-        RESERVATION_DAY_OF_WEEK = getDayOfWeek(date);
-        ORDER = order;
+        this.date = date;
+        reservationDayOfWeek = getDayOfWeek(date);
+        this.order = order;
     }
 
     protected int getDayOfWeek(int date) {
@@ -49,7 +49,7 @@ public abstract class Event {
     @Override
     public String toString() {
         if (getDiscount() != 0) {
-            return (String.format("%s: -%s", NAME, Converter.amountCurrencyFormatted(getDiscount())));
+            return (String.format("%s: -%s", name, Converter.amountCurrencyFormatted(getDiscount())));
         }
         return ""; // 할인(혜택)이 없는 경우
     }
