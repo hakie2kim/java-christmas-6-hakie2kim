@@ -9,17 +9,26 @@ import christmas.view.Input;
 import christmas.view.Output;
 
 public class EventPlannerApplication {
+    private int expectedVisitingDate;
+    private Order order;
+
     void execute() {
         try {
             printWelcome();
-            Customer customer = new Customer(
-                    Converter.stringToInteger(Input.readExpectedVisitingDate(), "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."),
-                    new Order(Input.readOrder())
-            );
+            readInputs();
+            Customer customer = new Customer(expectedVisitingDate, order);
             printDetails(customer);
         } catch (IllegalArgumentException illegalArgumentException) {
             Output.printErrorMessage(illegalArgumentException.getMessage());
         }
+    }
+
+    private void readInputs() {
+        int expectedVisitingDate = Converter.stringToInteger(Input.readExpectedVisitingDate(),
+                "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        Event.verifyDate(expectedVisitingDate);
+        this.expectedVisitingDate = expectedVisitingDate;
+        order = new Order(Input.readOrder());
     }
 
     private void printWelcome() {

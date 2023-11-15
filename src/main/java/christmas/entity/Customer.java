@@ -1,5 +1,7 @@
 package christmas.entity;
 
+import christmas.entity.Event.Event;
+
 public class Customer {
     private final int expectedVisitingDate;
     private final Order order;
@@ -8,7 +10,7 @@ public class Customer {
     public Customer(int expectedVisitingDate, Order order) {
         this.expectedVisitingDate = expectedVisitingDate;
         this.order = order;
-        this.benefit = new Benefit(expectedVisitingDate, order);
+        this.benefit = new Benefit(this.expectedVisitingDate, order);
     }
 
     public int getExpectedVisitingDate() {
