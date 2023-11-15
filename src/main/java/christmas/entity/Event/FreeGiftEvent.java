@@ -19,7 +19,7 @@ public class FreeGiftEvent extends Event {
     }
 
     private boolean isEligible() {
-        return order.getTotalAmountBeforeDiscounts() >= 120000;
+        return super.order.getTotalAmountBeforeDiscounts() >= 120000;
     }
 
     public String getFreeGift() {

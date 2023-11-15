@@ -9,7 +9,7 @@ public class WeekdayEvent extends Event {
     }
 
     protected int calculateDiscount() {
-        if (reservationDayOfWeek == 7 || 1 <= reservationDayOfWeek && reservationDayOfWeek <= 4) {
+        if (super.reservationDayOfWeek == 7 || 1 <= super.reservationDayOfWeek && super.reservationDayOfWeek <= 4) {
             return super.order.getNumberOfDesertMenu() * 2023;
         }
 

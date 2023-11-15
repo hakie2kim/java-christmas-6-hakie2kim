@@ -9,7 +9,7 @@ public class SpecialEvent extends Event {
     }
 
     protected int calculateDiscount() {
-        if (reservationDayOfWeek == 7 || date == 25) {
+        if (super.reservationDayOfWeek == 7 || super.date == 25) {
             return 1000;
         }
 

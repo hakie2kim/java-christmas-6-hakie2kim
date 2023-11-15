@@ -42,11 +42,18 @@ public enum Menu {
         }
     }
 
+    private static boolean containsOtherThanDrinks(List<Menu> menus) {
+        return menus.stream()
+                .anyMatch(menu ->
+                        menu.getType().equals("애피타이저") ||
+                                menu.getType().equals("메인") ||
+                                menu.getType().equals("디저트")
+                );
+    }
+
     public static void containsOnlyDrinks(List<Menu> menus) {
-        for (Menu menu : menus) {
-            if ((menu.getType().equals("애피타이저") || menu.getType().equals("메인") || menu.getType().equals("디저트"))) {
-                return;
-            }
+        if (containsOtherThanDrinks(menus)) { // 애피타이저, 메인, 디저트를 포함하고 있다면 예외를 발생하지 않는다.
+            return;
         }
 
         throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.");
