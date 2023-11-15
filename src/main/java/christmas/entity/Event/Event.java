@@ -8,8 +8,8 @@ import java.time.LocalDate;
 public abstract class Event {
     protected final String NAME;
     private final static int YEAR = 2023;
-    private final static int MONTH = 12;
-    protected final int reservationDayOfWeek;
+    public final static int MONTH = 12;
+    protected final int reservationDayOfWeek; // 월요일 1부터 일요일 7까지
     protected final int date;
     protected final Order order;
     protected int discount;

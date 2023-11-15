@@ -9,8 +9,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class Output {
-    public static void printWelcomeMessage() {
-        System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+    public static void printWelcomeMessage(int month) {
+        System.out.println("안녕하세요! 우테코 식당 " + month + "월 이벤트 플래너입니다.");
     }
 
     public static void printMenu() {

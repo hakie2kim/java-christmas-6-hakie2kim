@@ -2,6 +2,7 @@ package christmas;
 
 import christmas.entity.Benefit;
 import christmas.entity.Customer;
+import christmas.entity.Event.Event;
 import christmas.entity.Order;
 import christmas.util.Converter;
 import christmas.view.Input;
@@ -10,7 +11,7 @@ import christmas.view.Output;
 public class EventPlannerApplication {
     void execute() {
         try {
-            Output.printWelcomeMessage();
+            Output.printWelcomeMessage(Event.MONTH);
             Output.printMenu();
             Output.printCautions();
             Customer customer = new Customer(
