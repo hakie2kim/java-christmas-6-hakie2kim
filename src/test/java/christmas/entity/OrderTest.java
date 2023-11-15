@@ -50,7 +50,7 @@ class OrderTest {
     @DisplayName("디저트 메뉴의 개수 확인하기")
     @Test
     void createOrderByFourDessertMenu() {
-        assertThat(new Order(new String[]{"티본스테이크-1", "아이스크림-3", "초코케이크-1"}).getNumberOfDesertMenu())
+        assertThat(new Order(new String[]{"티본스테이크-1", "아이스크림-3", "초코케이크-1"}).getNumberOfDessertMenu())
                 .isEqualTo(4);
     }
 

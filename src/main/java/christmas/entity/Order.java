@@ -66,7 +66,7 @@ public class Order {
         }
     }
 
-    public int getNumberOfDesertMenu() {
+    public int getNumberOfDessertMenu() {
         int numberOfDessertMenu = 0;
 
         for (Menu menu : purchase.keySet()) {

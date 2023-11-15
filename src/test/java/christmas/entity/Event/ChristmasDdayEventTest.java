@@ -2,6 +2,7 @@ package christmas.entity.Event;
 
 import christmas.entity.Order;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -19,5 +20,13 @@ class ChristmasDdayEventTest {
     void checkDiscountByDate(int date, int discount) {
         Order order = new Order(new String[]{"해산물파스타-2", "시저샐러드-4"});
         assertThat(new ChristmasDdayEvent(date, order).getDiscount()).isEqualTo(discount);
+    }
+
+    @DisplayName("이벤트의 혜택이 정해진 형식인지 확인한다.")
+    @Test
+    void checkEventInFormat() {
+        Order order = new Order(new String[]{"해산물파스타-2", "시저샐러드-4"});
+        assertThat(new ChristmasDdayEvent(12, order).toString())
+                .isEqualTo("크리스마스 디데이 할인: -2,100원");
     }
 }

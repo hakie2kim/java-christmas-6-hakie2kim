@@ -5,7 +5,6 @@ import christmas.util.Converter;
 
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
-import java.util.Calendar;
 
 public abstract class Event {
     private final static int YEAR = 2023;
@@ -52,6 +51,6 @@ public abstract class Event {
         if (getDiscount() != 0) {
             return (String.format("%s: -%s", NAME, Converter.amountCurrencyFormatted(getDiscount())));
         }
-        return "";
+        return ""; // 할인(혜택)이 없는 경우
     }
 }

@@ -9,10 +9,10 @@ public class WeekendEvent extends Event {
     }
 
     protected int calculateDiscount() {
+        // 금-토요일인 경우
         if (5 <= super.reservationDayOfWeek && super.reservationDayOfWeek <= 6) {
             return super.order.getNumberOfMainMenu() * 2023;
         }
-
         return 0;
     }
 }
