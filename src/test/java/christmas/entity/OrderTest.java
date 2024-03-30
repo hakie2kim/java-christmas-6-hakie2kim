@@ -19,7 +19,7 @@ class OrderTest {
     @DisplayName("메뉴의 개수 0 이하 20 초과일 경우로 주문하기 (잘못된 형식)")
     @Test
     void createOrderByWrongQuantity() {
-        assertThatThrownBy(() -> new Order(new String[]{"아이스크림-21", "해산물파스타-18"}))
+        assertThatThrownBy(() -> new Order(new String[]{"아이스크림-21", "해산물파스타--30"}))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }

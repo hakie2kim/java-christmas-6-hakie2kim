@@ -19,6 +19,7 @@ class ConverterTest {
     @DisplayName("정수형으로 바꿀 수 있는 문자열을 변환한다.")
     @Test
     void convertibleStringToInteger() {
+        // 주문 형식이 1에서 20까지만 허용되는 정규식을 사용했기 때문에 음수 개수의 주문을 입력해도 상관 없음
         assertDoesNotThrow(() -> Converter.stringToInteger("-32", "[SUCCESS]"));
     }
 
